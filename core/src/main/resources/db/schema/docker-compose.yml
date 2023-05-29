@@ -1,0 +1,27 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init_schema.sql:/docker-entrypoint-initdb.d/init_schema.sql
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PWD}
+      - POSTGRES_DB=${DB_NAME}
+
+  app:
+    build:
+      context: src/main/resources/db/schema
+      dockerfile: ../src/main/resources/db/schema/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_NAME=${DB_NAME}
+      - DB_HOSTNAME=db
+      - DB_PORT=${DB_PORT}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PWD=${DB_PWD}
+    depends_on:
+      - db

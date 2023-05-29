@@ -7,7 +7,6 @@ import br.com.gubee.interview.model.request.HeroComparingDTO;
 import br.com.gubee.interview.model.request.HeroDTO;
 import br.com.gubee.interview.model.request.HeroForm;
 import lombok.RequiredArgsConstructor;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
